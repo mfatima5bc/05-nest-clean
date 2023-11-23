@@ -30,6 +30,13 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "title": "How to convert strings to numbers in js",
-    "content": "You can user js Number() to convert string into numerics types"
+    "title": "How to install docker",
+    "content": "You can install by rpm packeges on in packege manager"
 }
+
+###
+
+# @name fetch_recent_questions
+GET {{baseUrl}}/questions?page=3
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
