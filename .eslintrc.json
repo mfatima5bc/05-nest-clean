@@ -5,14 +5,22 @@
         "es2021": true
     },
     "parser": "@typescript-eslint/parser",
-    "extends": ["standard", "plugin:prettier/recommended"],
-    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "standard",
+        "plugin:prettier/recommended",
+        "plugin:vitest-globals/recommended"
+    ],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "project": "./tsconfig.json"
     },
     "rules": {
-        "prettier/prettier": ["error"],
+        "prettier/prettier": [
+            "error"
+        ],
         "no-useless-constructor": "off"
     }
 }
