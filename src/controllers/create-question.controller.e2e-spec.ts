@@ -1,10 +1,10 @@
-import { AppModule } from "@/app.module";
+import { AppModule } from '@/app.module';
 import { Test } from '@nestjs/testing';
-import { INestApplication } from "@nestjs/common";
+import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { PrismaService } from "@/prisma/prisma.service";
-import { hash } from "bcryptjs";
-import { JwtService } from "@nestjs/jwt";
+import { PrismaService } from '@/prisma/prisma.service';
+import { hash } from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
 
 describe('Create question (E2E)', () => {
   let app: INestApplication;
@@ -29,9 +29,9 @@ describe('Create question (E2E)', () => {
         name: 'John Doe',
         email: 'Johndoe@email.com',
         password: await hash('123456', 8),
-      }
-    })
-    const accessToken = jwt.sign({sub: user.id});
+      },
+    });
+    const accessToken = jwt.sign({ sub: user.id });
     const response = await request(app.getHttpServer())
       .post('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
@@ -45,8 +45,8 @@ describe('Create question (E2E)', () => {
     const questionOnDataBase = await prisma.question.findFirst({
       where: {
         title: 'New question',
-      }
-    })
+      },
+    });
 
     expect(questionOnDataBase).toBeTruthy();
   });

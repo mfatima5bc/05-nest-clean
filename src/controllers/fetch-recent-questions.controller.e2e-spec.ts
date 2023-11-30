@@ -1,10 +1,10 @@
-import { AppModule } from "@/app.module";
+import { AppModule } from '@/app.module';
 import { Test } from '@nestjs/testing';
-import { INestApplication } from "@nestjs/common";
+import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { PrismaService } from "@/prisma/prisma.service";
-import { hash } from "bcryptjs";
-import { JwtService } from "@nestjs/jwt";
+import { PrismaService } from '@/prisma/prisma.service';
+import { hash } from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
 
 describe('Fetch recent questions (E2E)', () => {
   let app: INestApplication;
@@ -29,9 +29,9 @@ describe('Fetch recent questions (E2E)', () => {
         name: 'John Doe',
         email: 'Johndoe@email.com',
         password: await hash('123456', 8),
-      }
-    })
-    const accessToken = jwt.sign({sub: user.id});
+      },
+    });
+    const accessToken = jwt.sign({ sub: user.id });
 
     await prisma.question.createMany({
       data: [
@@ -39,16 +39,16 @@ describe('Fetch recent questions (E2E)', () => {
           title: 'New question 01',
           slug: 'question-01',
           content: 'Question for test',
-          authorId: user.id
+          authorId: user.id,
         },
         {
           title: 'New question 02',
           slug: 'question-02',
           content: 'Question for test',
-          authorId: user.id
-        }
-      ]
-    })
+          authorId: user.id,
+        },
+      ],
+    });
     const response = await request(app.getHttpServer())
       .get('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
@@ -58,9 +58,9 @@ describe('Fetch recent questions (E2E)', () => {
 
     expect(response.body).toEqual({
       questions: [
-        expect.objectContaining({title: 'New question 01'}),
-        expect.objectContaining({title: 'New question 02'})
-      ]
+        expect.objectContaining({ title: 'New question 01' }),
+        expect.objectContaining({ title: 'New question 02' }),
+      ],
     });
   });
 });

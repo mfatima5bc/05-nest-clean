@@ -1,9 +1,9 @@
-import { AppModule } from "@/app.module";
+import { AppModule } from '@/app.module';
 import { Test } from '@nestjs/testing';
-import { INestApplication } from "@nestjs/common";
+import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { PrismaService } from "@/prisma/prisma.service";
-import { hash } from "bcryptjs";
+import { PrismaService } from '@/prisma/prisma.service';
+import { hash } from 'bcryptjs';
 
 describe('Authentication (E2E)', () => {
   let app: INestApplication;
@@ -26,8 +26,8 @@ describe('Authentication (E2E)', () => {
         name: 'John Doe',
         email: 'Johndoe@email.com',
         password: await hash('123456', 8),
-      }
-    })
+      },
+    });
 
     const response = await request(app.getHttpServer()).post('/sessions').send({
       email: 'Johndoe@email.com',
