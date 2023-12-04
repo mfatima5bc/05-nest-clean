@@ -36,7 +36,7 @@ describe('Authentication (E2E)', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({
-      access_token: expect.any(String),
+      accessToken: expect.any(String),
     });
   });
 });
