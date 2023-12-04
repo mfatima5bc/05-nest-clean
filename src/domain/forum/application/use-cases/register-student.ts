@@ -19,7 +19,7 @@ type CreateStudentUseCaseResponse = ResponseType<
 >;
 
 @Injectable()
-export class CreateStudentUseCase {
+export class RegisterStudentUseCase {
   constructor(
     private studentRepository: StudentRepository,
     private hashGenerator: HashGenerator,
