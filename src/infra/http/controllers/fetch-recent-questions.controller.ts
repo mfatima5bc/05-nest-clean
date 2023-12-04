@@ -1,4 +1,10 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import {
+  BadRequestException,
+  Controller,
+  Get,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
 import { z } from 'zod';
@@ -28,7 +34,7 @@ export class FetchRecentQuestionsController {
     });
 
     if (result.isError()) {
-      throw new Error('Error to load recent questions');
+      throw new BadRequestException(result.value);
     }
 
     const questions = result.value.questions;
