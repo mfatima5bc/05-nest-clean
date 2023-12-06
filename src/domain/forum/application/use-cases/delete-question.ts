@@ -2,6 +2,7 @@ import { ResponseType, error, success } from '@/core/response-type';
 import { QuestionRepository } from '../repositories/questions-repository';
 import { NotAllowedError } from '@/core/errors/not-allowed-error';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
+import { Injectable } from '@nestjs/common';
 
 interface DeleteQuestionUseCaseRequest {
   authorId: string;
@@ -13,6 +14,7 @@ type DeleteQuestionUseCaseResponse = ResponseType<
   {}
 >;
 
+@Injectable()
 export class DeleteQuestionUseCase {
   constructor(private questionsRepository: QuestionRepository) {}
 
