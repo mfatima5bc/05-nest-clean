@@ -23,7 +23,7 @@ export function makeAnswer(
 }
 
 @Injectable()
-export class QuestionFactory {
+export class AnswerFactory {
   constructor(private prisma: PrismaService) {}
 
   async makePrismaAnswer(data: Partial<AnswerProps> = {}): Promise<Answer> {
