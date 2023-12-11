@@ -28,10 +28,10 @@ export function makeQuestionComment(
 }
 
 @Injectable()
-export class QuestionFactory {
+export class QuestionCommentFactory {
   constructor(private prisma: PrismaService) {}
 
-  async makePrismaAnswer(
+  async makePrismaQuestionComment(
     data: Partial<QuestionCommentProps> = {},
   ): Promise<QuestionComment> {
     const question = makeQuestionComment(data);
