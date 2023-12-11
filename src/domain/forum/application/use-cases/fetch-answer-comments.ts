@@ -1,6 +1,7 @@
 import { AnswerComment } from '@/domain/forum/enterprise/entities/answer-comment';
 import { AnswerCommentsRepository } from '@/domain/forum/application/repositories/answer-comments-repository';
 import { ResponseType, success } from '@/core/response-type';
+import { Injectable } from '@nestjs/common';
 
 interface FetchAnswerCommentsUseCaseRequest {
   answerId: string;
@@ -14,6 +15,7 @@ type FetchAnswerCommentsUseCaseResponse = ResponseType<
   }
 >;
 
+@Injectable()
 export class FetchAnswerCommentsUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
 
