@@ -12,6 +12,7 @@ import { Express } from 'express';
 
 @Controller('/attachments')
 export class UploadAttachmentController {
+  constructor() {}
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async handle(
