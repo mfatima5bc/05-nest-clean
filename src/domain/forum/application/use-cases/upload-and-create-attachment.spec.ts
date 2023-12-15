@@ -1,6 +1,5 @@
 import { InMemoryAttachmentRepository } from 'test/repositories/in-memory-attachment-repository';
 import { UploadAndCreateAttachmentUseCase } from './upload-and-create-attachment';
-import { Uploader } from '../storage/uploader';
 import { FakeUploader } from 'test/storage/fake-uploader';
 import { InvalidAttachmentType } from './errors/invalid-attachment-type-error';
 
