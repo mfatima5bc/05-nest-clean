@@ -36,6 +36,7 @@ lerna-debug.log*
 
 # eenv 
 .env
+.env.test
 
 # Docker
 data

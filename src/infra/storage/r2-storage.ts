@@ -15,7 +15,7 @@ export class R2Storage implements Uploader {
     const accountId = envService.get('CLOUDFLARE_ACCOUNT_ID');
 
     this.client = new S3Client({
-      endpoint: `https://${accountId}.r2.cloundflarestorage.com`,
+      endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
       region: 'auto',
       credentials: {
         accessKeyId: envService.get('AWS_ACCESS_KEY_ID'),
@@ -31,6 +31,8 @@ export class R2Storage implements Uploader {
   }: UploadParams): Promise<{ url: string }> {
     const uploadId = randomUUID();
     const uniqueFileName = `${uploadId}-${fileName}`;
+
+    console.log(fileType);
 
     await this.client.send(
       new PutObjectCommand({
