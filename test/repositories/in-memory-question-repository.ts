@@ -53,6 +53,10 @@ export class InMemoryQuestionRepository implements QuestionRepository {
   async create(question: Question): Promise<void> {
     this.items.push(question);
 
+    await this.questionAttachmentsRepository.createMany(
+      question.attachments.getItems(),
+    );
+
     DomainEvents.dispatchEventsForAggregate(question.id);
   }
 }
