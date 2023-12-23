@@ -3,16 +3,16 @@ import { UploadAndCreateAttachmentUseCase } from './upload-and-create-attachment
 import { FakeUploader } from 'test/storage/fake-uploader';
 import { InvalidAttachmentType } from './errors/invalid-attachment-type-error';
 
-let inMemoryAttchmentRepository: InMemoryAttachmentRepository;
+let inMemoryAttachmentRepository: InMemoryAttachmentRepository;
 let fakeUploader: FakeUploader;
 let sut: UploadAndCreateAttachmentUseCase;
 
 describe('Upload file', () => {
   beforeEach(() => {
-    inMemoryAttchmentRepository = new InMemoryAttachmentRepository();
+    inMemoryAttachmentRepository = new InMemoryAttachmentRepository();
     fakeUploader = new FakeUploader();
     sut = new UploadAndCreateAttachmentUseCase(
-      inMemoryAttchmentRepository,
+      inMemoryAttachmentRepository,
       fakeUploader,
     );
   });
@@ -26,7 +26,7 @@ describe('Upload file', () => {
 
     expect(result.isSuccess()).toBe(true);
     expect(result.value).toEqual({
-      attachment: inMemoryAttchmentRepository.items[0],
+      attachment: inMemoryAttachmentRepository.items[0],
     });
 
     expect(fakeUploader.uploads).toHaveLength(1);

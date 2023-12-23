@@ -42,8 +42,6 @@ export class UploadAttachmentController {
       body: file.buffer,
     });
 
-    console.log(result);
-
     if (result.isError()) {
       const error = result.value;
 
