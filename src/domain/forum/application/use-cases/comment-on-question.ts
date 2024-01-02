@@ -5,7 +5,6 @@ import { QuestionCommentRepository } from '@/domain/forum/application/repositori
 import { ResponseType, error, success } from '@/core/response-type';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
 import { Injectable } from '@nestjs/common';
-import { QuestionAttachmentsRepository } from '../repositories/question-attachments-repository';
 
 interface CommentOnQuestionUseCaseRequest {
   authorId: string;
@@ -24,7 +23,7 @@ type CommentOnQuestionUseCaseResponse = ResponseType<
 export class CommentOnQuestionUseCase {
   constructor(
     private questionsRepository: QuestionRepository,
-    private questionCommentsRepository: QuestionCommentRepository, // private questionAttachmentRepository: QuestionAttachmentsRepository,
+    private questionCommentsRepository: QuestionCommentRepository,
   ) {}
 
   async execute({
