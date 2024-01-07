@@ -16,6 +16,8 @@ import { makeAnswer } from 'test/factories/make-answer';
 import { makeAnswerComment } from 'test/factories/make-answer-comment';
 import { waitFor } from 'test/utils/wait-for';
 import { SpyInstance } from 'vitest';
+import { InMemoryAttachmentRepository } from 'test/repositories/in-memory-attachment-repository';
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository';
 
 let sendNotificationExecuteSpy: SpyInstance<
   [SendNotificationUseCaseRequest],
@@ -30,8 +32,13 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository;
 let sendNotificationUseCase: SendNotificationUseCase;
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 
+let inMemoryAttachmentsRepository: InMemoryAttachmentRepository;
+let inMemoryStudentsRepository: InMemoryStudentsRepository;
+
 describe('On answer comment created', () => {
   beforeEach(() => {
+    inMemoryAttachmentsRepository = new InMemoryAttachmentRepository();
+    inMemoryStudentsRepository = new InMemoryStudentsRepository();
     inMemoryAnswersAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository();
     inMemoryAnswersRepository = new InMemoryAnswerRepository(
@@ -41,8 +48,12 @@ describe('On answer comment created', () => {
       new InMemoryQuestionAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository,
     );
-    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository();
+    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(
+      inMemoryStudentsRepository,
+    );
 
     inMemoryNotificationsRepository = new InMemoryNotificationsRepository();
     sendNotificationUseCase = new SendNotificationUseCase(

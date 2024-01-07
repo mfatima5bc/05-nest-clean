@@ -14,6 +14,8 @@ import { makeQuestion } from 'test/factories/make-question';
 import { SpyInstance } from 'vitest';
 import { waitFor } from 'test/utils/wait-for';
 import { OnQuestionBestAnswerChosen } from './on-question-best-answer-chosen-event';
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository';
+import { InMemoryAttachmentRepository } from 'test/repositories/in-memory-attachment-repository';
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemmoryQuestionRepository: InMemoryQuestionRepository;
@@ -21,6 +23,8 @@ let inMemoryAnswersAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswerRepository;
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository;
 let sendNotificationUseCase: SendNotificationUseCase;
+let inMemoryAttachmentsRepository: InMemoryAttachmentRepository;
+let inMemoryStudentsRepository: InMemoryStudentsRepository;
 
 let sendNotificationExecuteSpy: SpyInstance<
   [SendNotificationUseCaseRequest],
@@ -31,6 +35,8 @@ describe('On question best answer was selected', () => {
   beforeEach(() => {
     inMemoryAnswersAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository();
+    inMemoryAttachmentsRepository = new InMemoryAttachmentRepository();
+    inMemoryStudentsRepository = new InMemoryStudentsRepository();
     inMemoryAnswersRepository = new InMemoryAnswerRepository(
       inMemoryAnswersAttachmentsRepository,
     );
@@ -45,6 +51,8 @@ describe('On question best answer was selected', () => {
     );
     inMemmoryQuestionRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository,
     );
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, 'execute');
