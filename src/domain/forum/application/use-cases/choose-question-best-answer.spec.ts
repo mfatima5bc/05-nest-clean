@@ -7,10 +7,14 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { NotAllowedError } from '@/core/errors/not-allowed-error';
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository';
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository';
+import { InMemoryAttachmentRepository } from 'test/repositories/in-memory-attachment-repository';
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionRepository: InMemoryQuestionRepository;
+let inMemoryAttachmentsRepository: InMemoryAttachmentRepository;
+let inMemoryStudentsRepository: InMemoryStudentsRepository;
 let inMemoryAnswerRepository: InMemoryAnswerRepository;
 let sut: ChooseQuestionBestAnswerUseCase;
 
@@ -23,8 +27,12 @@ describe('Choose question best answer', () => {
     inMemoryAnswerRepository = new InMemoryAnswerRepository(
       inMemoryAnswerAttachmentsRepository,
     );
+    inMemoryAttachmentsRepository = new InMemoryAttachmentRepository();
+    inMemoryStudentsRepository = new InMemoryStudentsRepository();
     inMemoryQuestionRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository,
     );
     sut = new ChooseQuestionBestAnswerUseCase(
       inMemoryQuestionRepository,
