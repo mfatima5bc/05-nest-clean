@@ -2,6 +2,7 @@ import { ResponseType, success } from '@/core/response-type';
 import { NotificationsRepository } from '../repositories/notifications-repository';
 import { Notification } from '../../enterprise/entities/notification';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+import { Injectable } from '@nestjs/common';
 
 export interface SendNotificationUseCaseRequest {
   recipientId: string;
@@ -16,6 +17,7 @@ export type SendNotificationUseCaseResponse = ResponseType<
   }
 >;
 
+@Injectable()
 export class SendNotificationUseCase {
   constructor(private notificationsRepository: NotificationsRepository) {}
 

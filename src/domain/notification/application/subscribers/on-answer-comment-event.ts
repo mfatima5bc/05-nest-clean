@@ -4,7 +4,9 @@ import { DomainEvents } from '@/core/events/domain-events';
 import { AnswerCommentCreatedEvent } from '@/domain/forum/enterprise/events/answer-comment-created-event';
 import { AnswerRepository } from '@/domain/forum/application/repositories/answers-repository';
 import { QuestionRepository } from '@/domain/forum/application/repositories/questions-repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class OnAnswerCommentEvent implements EventHandler {
   constructor(
     private answerRepository: AnswerRepository,
