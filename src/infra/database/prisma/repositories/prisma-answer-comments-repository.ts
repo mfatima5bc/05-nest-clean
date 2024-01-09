@@ -6,6 +6,7 @@ import { PrismaAnswerCommentMapper } from '../mappers/prisma-answer-comment-mapp
 import { PaginationParams } from '@/core/repositories/pagination-params';
 import { CommentWithAuthor } from '@/domain/forum/enterprise/entities/value-objects/comment-with-author';
 import { PrismaCommentWithAuthorMapper } from '../mappers/prisma-question-comment-with-author-mapper';
+import { DomainEvents } from '@/core/events/domain-events';
 
 @Injectable()
 export class PrismaAnswerCommentsRepository
@@ -69,6 +70,8 @@ export class PrismaAnswerCommentsRepository
     await this.prisma.comment.create({
       data,
     });
+
+    DomainEvents.dispatchEventsForAggregate(answerComment.id);
   }
 
   async delete(answerComment: AnswerComment): Promise<void> {
