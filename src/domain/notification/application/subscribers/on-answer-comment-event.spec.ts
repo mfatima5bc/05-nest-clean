@@ -75,9 +75,9 @@ describe('On answer comment created', () => {
 
     const comment = makeAnswerComment({ answerId: answer.id });
 
-    inMemoryQuestionsRepository.create(question);
-    inMemoryAnswersRepository.create(answer);
-    inMemoryAnswerCommentsRepository.create(comment);
+    await inMemoryQuestionsRepository.create(question);
+    await inMemoryAnswersRepository.create(answer);
+    await inMemoryAnswerCommentsRepository.create(comment);
 
     await waitFor(() => {
       expect(sendNotificationExecuteSpy).toHaveBeenCalled();

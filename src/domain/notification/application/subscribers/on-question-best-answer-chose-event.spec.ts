@@ -67,12 +67,12 @@ describe('On question best answer was selected', () => {
     const question = makeQuestion();
     const answer = makeAnswer({ questionId: question.id });
 
-    inMemmoryQuestionRepository.create(question);
-    inMemoryAnswersRepository.create(answer);
+    await inMemmoryQuestionRepository.create(question);
+    await inMemoryAnswersRepository.create(answer);
 
     question.bestAnswerId = answer.id;
 
-    inMemmoryQuestionRepository.save(question);
+    await inMemmoryQuestionRepository.save(question);
 
     await waitFor(() => {
       expect(sendNotificationExecuteSpy).toHaveBeenCalled();
