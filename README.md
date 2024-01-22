@@ -45,18 +45,16 @@ Generate migrations
 ```shell
 npx prisma generate
 ```
+start the services with docker
+If you'r running this on wsl and you docker is instaled on windows, comment the compose line # network_mode: host
+```shell
+docker compose up --build -d
+```
 Rum migrations
 ```shell
-npx prisma migrate deploy
+npx prisma migrate dev # deploy
 ```
-Run your docker compose 
-```shell
-docker compose build
-```
-start the services with docker
-```shell
-docker compose up -d
-```
+
 _You can use the client.http to try the api endpoints, just download __REST Cliente__ vscode extension_
 
 Enjoy!

@@ -41,4 +41,28 @@ GET {{baseUrl}}/questions?page=1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
+###
 
+# @name upload_file
+POST {{baseUrl}}/attachments
+# Content-Type: multipart/form-data
+Authorization: Bearer {{authToken}}
+# Content-Type: multipart/form-data; boundary=MfnBoundry
+Content-Disposition: form-data; name="file"; filename="test.png"
+Content-Type: text/plain
+--MfnBoundry
+
+file: ./test/e2e/test.png
+--MfnBoundry--
+
+###
+
+# @name create_answer
+POST {{baseUrl}}/questions/{questionId/answer}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "attachments": [],
+    "content": "Actuelly it's scarey"
+}
