@@ -31,7 +31,8 @@ Authorization: Bearer {{authToken}}
 
 {
     "title": "Undestending nest dependence injection",
-    "content": "Actuelly it's scarey"
+    "content": "Actuelly it's scarey",
+    "attachments": []
 }
 
 ###
@@ -45,20 +46,20 @@ Authorization: Bearer {{authToken}}
 
 # @name upload_file
 POST {{baseUrl}}/attachments
-# Content-Type: multipart/form-data
 Authorization: Bearer {{authToken}}
-# Content-Type: multipart/form-data; boundary=MfnBoundry
-Content-Disposition: form-data; name="file"; filename="test.png"
-Content-Type: text/plain
---MfnBoundry
+Content-Type: multipart/form-data; boundary=MfnBoundry
 
-file: ./test/e2e/test.png
+--MfnBoundry
+Content-Disposition: form-data; name="file"; filename="test.png"
+Content-Type: image/png
+
+< ./test/e2e/test.png
 --MfnBoundry--
 
 ###
 
 # @name create_answer
-POST {{baseUrl}}/questions/{questionId/answer}
+POST {{baseUrl}}/questions/7482b20a-e81f-4897-95f8-8be1392c4296/answer
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
