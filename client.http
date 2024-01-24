@@ -1,6 +1,8 @@
 @baseUrl = http://localhost:3333
 @authToken = {{authenticate.response.body.accessToken}}
 
+### 
+
 # @name create_account
 POST {{baseUrl}}/accounts
 Content-Type: application/json
@@ -32,13 +34,47 @@ Authorization: Bearer {{authToken}}
 {
     "title": "Undestending nest dependence injection",
     "content": "Actuelly it's scarey",
-    "attachments": []
+    "attachments": ["3929a3bd-3ad0-4f96-a114-55ec80114f76"]
+}
+
+###
+
+# @name edit_question
+PUT {{baseUrl}}/questions/dc064915-6855-4c0d-be05-a601749d945e
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Undestending nest Dependence Injection",
+    "content": "Actuelly it's scarey",
+    "attachments": ["f91ad0a3-b359-43b6-81fa-aa1c013569c6"]
 }
 
 ###
 
 # @name fetch_recent_questions
 GET {{baseUrl}}/questions?page=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name fetch_question_comments
+GET {{baseUrl}}/questions/dc064915-6855-4c0d-be05-a601749d945/comments?page=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name fetch_question_answers
+GET {{baseUrl}}/questions/dc064915-6855-4c0d-be05-a601749d945/answers?page=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name get_question_by_slug
+GET {{baseUrl}}/questions/undestending-nest-dependence-injection
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
@@ -59,7 +95,7 @@ Content-Type: image/png
 ###
 
 # @name create_answer
-POST {{baseUrl}}/questions/7482b20a-e81f-4897-95f8-8be1392c4296/answer
+POST {{baseUrl}}/questions/dc064915-6855-4c0d-be05-a601749d945e/answers
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
@@ -67,3 +103,5 @@ Authorization: Bearer {{authToken}}
     "attachments": [],
     "content": "Actuelly it's scarey"
 }
+
+###

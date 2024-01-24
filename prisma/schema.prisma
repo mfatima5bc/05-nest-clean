@@ -3,7 +3,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"] // change this of you system options if you'r not running in docker
+  // engineType = "binary"
+  binaryTargets = ["native"]
+  // binaryTargets = ["native", "debian-openssl-3.0.x"] // change this of you system options if you'r not running in docker
 }
 
 datasource db {
